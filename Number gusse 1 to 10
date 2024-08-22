@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 10:</p>
+    <input type="number" id="guess" min="1" max="10">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <div id="result"></div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+        
+        function checkGuess() {
+            const guess = document.getElementById('guess').value;
+            const result = document.getElementById('result');
+
+            if (guess == randomNumber) {
+                result.textContent = 'Congratulations! You guessed it right!';
+                result.style.color = 'green';
+            } else {
+                result.textContent = `You lose! The correct number was ${randomNumber}.`;
+                result.style.color = 'red';
+            }
+
+            // Disable the input and button after a guess
+            document.getElementById('guess').disabled = true;
+            document.querySelector('button').disabled = true;
+        }
+    </script>
+</body>
+</html>
